@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pdReviewVO;
 import com.team3.product.vo.productQnaVO;
 import com.team3.product.vo.productVO;
 
@@ -72,7 +72,7 @@ public class productQnaDAOImpl implements productQnaDAO{
 	}
 
 	@Override
-	public int countData(PageCriteria pCria) throws Exception {
+	public int countData(pageCriteria pCria) throws Exception {
 		
 		return sqlSession.selectOne("countData", pCria);
 	}

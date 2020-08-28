@@ -74,10 +74,10 @@
 	    <result column="pd_img_name_s" property="pd_img_name_s"/>
 	    <result column="pd_stock" property="pd_stock"/>
 	    	
-	    	<collection property="pd_wishlistVO" resultMap="pd_wishlistVO_ID"/>
+	    	<collection property="pdWishlistVO" resultMap="pdWishlistVO_ID"/>
 	</resultMap>
 
-	<resultMap type="com.team3.product.vo.pd_wishlistVO" id="pd_wishlistVO_ID">
+	<resultMap type="com.team3.product.vo.pdWishlistVO" id="pdWishlistVO_ID">
 	    <result column="pd_wish_idx" property="pd_wish_idx"/>
 	    <result column="member_mb_id" property="member_mb_id"/>
 	    <result column="product_pd_idx" property="product_pd_idx"/>

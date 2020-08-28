@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pdReviewVO;
 
 
 @Repository
@@ -20,7 +20,7 @@ public class productReviewDAOImpl implements productReviewDAO {
 	
 
 	@Override
-	public void reviewWrite(pd_reviewVO pd_reviewVO) throws Exception {
+	public void reviewWrite(pdReviewVO pd_reviewVO) throws Exception {
 		sqlSession.insert(namespace + ".reviewWrite", pd_reviewVO);
 	}
 	
@@ -37,12 +37,12 @@ public class productReviewDAOImpl implements productReviewDAO {
 	}
 
 	@Override
-	public List<pd_reviewVO> reviewListCriteria(Map map) throws Exception {
+	public List<pdReviewVO> reviewListCriteria(Map map) throws Exception {
 		return sqlSession.selectList(namespace + ".reviewListCriteria",map);
 	}
 
 	@Override
-	public int reviewListCountData(pd_reviewVO pd_reviewVO) throws Exception {
+	public int reviewListCountData(pdReviewVO pd_reviewVO) throws Exception {
 		return sqlSession.selectOne("reviewListCountData",pd_reviewVO);
 	}
 
@@ -53,12 +53,12 @@ public class productReviewDAOImpl implements productReviewDAO {
 	}
 	
 	@Override
-	public List<pd_reviewVO> reviewListMemberCriteria(Map map) throws Exception {
+	public List<pdReviewVO> reviewListMemberCriteria(Map map) throws Exception {
 		return sqlSession.selectList(namespace + ".reviewListMemberCriteria",map);
 	}
 
 	@Override
-	public int reviewListMemberCountData(pd_reviewVO pd_reviewVO) throws Exception {
+	public int reviewListMemberCountData(pdReviewVO pd_reviewVO) throws Exception {
 		return sqlSession.selectOne("reviewListMemberCountData",pd_reviewVO);
 	}
 }

@@ -19,7 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.team3.cart.service.cartService;
 import com.team3.cart.vo.cartVO;
-import com.team3.member.service.MemberService;
+import com.team3.member.service.memberService;
 import com.team3.order.service.preordersService;
 
 @Controller
@@ -30,7 +30,7 @@ public class cartController {
 	cartService cartservice;
 
 	@Inject
-	MemberService memservice;
+	memberService memservice;
 	
 	@Inject
 	preordersService odservice;

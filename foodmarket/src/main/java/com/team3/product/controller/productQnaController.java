@@ -21,12 +21,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team3.member.service.MemberService;
-import com.team3.member.vo.MemberVO;
+import com.team3.member.service.memberService;
+import com.team3.member.vo.memberVO;
 import com.team3.product.service.productQnaService;
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.PagingMaker;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pagingMaker;
+import com.team3.product.vo.pdReviewVO;
 import com.team3.product.vo.productQnaVO;
 import com.team3.product.vo.productVO;
 
@@ -40,7 +40,7 @@ public class productQnaController {
 	productQnaService productqnaservice ;
 	
 	@Inject
-	MemberService memservice;
+	memberService memservice;
 	
 	
 	private static final Logger logger = LoggerFactory.getLogger(productQnaController.class);
@@ -49,7 +49,7 @@ public class productQnaController {
 	//----------------------   상품문의 입력페이지  ---------------------------
 	
 	@RequestMapping(value ="/qnawrite", method = RequestMethod.GET)
-	public void writeGET(@RequestParam(value="pd_idx",defaultValue="0") int pd_idx, productVO productVO,MemberVO mvo, productQnaVO qvo, Model model,HttpSession session)throws Exception {
+	public void writeGET(@RequestParam(value="pd_idx",defaultValue="0") int pd_idx, productVO productVO,memberVO mvo, productQnaVO qvo, Model model,HttpSession session)throws Exception {
 		
 		logger.info("게시글 입력~~~");
 	
@@ -147,7 +147,7 @@ public class productQnaController {
 	//구매자 마이페이지에서 불러오기 
 	//기존 게시판 목록과 같은 형식
 	@RequestMapping(value="/productQnaListMember", method=RequestMethod.GET)
-	public void productWishListMember(productVO productVO , productQnaVO productQnaVO, PageCriteria pCri, Model model, HttpSession session) throws Exception{
+	public void productWishListMember(productVO productVO , productQnaVO productQnaVO, pageCriteria pCri, Model model, HttpSession session) throws Exception{
 		//세션값 가져오기
 		String mb_id = session.getAttribute("mb_id").toString();
 		productQnaVO.setMb_id(mb_id);	
@@ -164,7 +164,7 @@ public class productQnaController {
 		
 		model.addAttribute("QnaListMember",QnaListMember);
 		
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(pCri);		
 		pagingMaker.setTotalData(productqnaservice.qnaListMemberCountData(productQnaVO));
 		model.addAttribute("pagingMaker", pagingMaker);

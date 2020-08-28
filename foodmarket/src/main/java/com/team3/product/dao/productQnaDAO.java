@@ -3,8 +3,8 @@ package com.team3.product.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pdReviewVO;
 import com.team3.product.vo.productQnaVO;
 import com.team3.product.vo.productVO;
 
@@ -29,7 +29,7 @@ public interface productQnaDAO {
 
 	 public List<productQnaVO> list(Map map)throws Exception;
 		
-	 public int countData(PageCriteria pCria)throws Exception;
+	 public int countData(pageCriteria pCria)throws Exception;
 	 
 	// 구매자 기준 list
 	public List<productQnaVO> qnaListMemberCriteria(Map map) throws Exception;

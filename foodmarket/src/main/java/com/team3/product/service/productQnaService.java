@@ -3,8 +3,8 @@ package com.team3.product.service;
 import java.util.List;
 import java.util.Map;
 
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pdReviewVO;
 import com.team3.product.vo.productQnaVO;
 import com.team3.product.vo.productVO;
 
@@ -32,7 +32,7 @@ public interface productQnaService {
 	 
 	 public List<productQnaVO> list(Map map)throws Exception;
 		
-	 public int countData(PageCriteria pCria)throws Exception;
+	 public int countData(pageCriteria pCria)throws Exception;
 	 
 	//구매자 기준 리뷰 리스트 만들기 
 	public List<productQnaVO> qnaListMemberCriteria(Map map) throws Exception;

@@ -19,12 +19,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.team3.admin.service.AdminService;
-import com.team3.admin.vo.RecommandVO;
+import com.team3.admin.service.adminService;
+import com.team3.admin.vo.recommandVO;
 import com.team3.cart.service.cartService;
 import com.team3.cart.vo.cartVO;
-import com.team3.member.service.MemberService;
-import com.team3.member.vo.MemberVO;
+import com.team3.member.service.memberService;
+import com.team3.member.vo.memberVO;
 import com.team3.order.service.orderService;
 import com.team3.order.service.preordersService;
 import com.team3.order.vo.ordersVO;
@@ -38,7 +38,7 @@ public class ordersController {
 	preordersService preordersservice;
 	
 	@Inject
-	MemberService ms;
+	memberService ms;
 	
 	@Inject
 	orderService orderservice;
@@ -47,7 +47,7 @@ public class ordersController {
 	cartService cartservice;
 	
 	@Inject
-	AdminService adminService;
+	adminService adminService;
 
 	//주문취소
 	@RequestMapping(value="orderCancel" , method = RequestMethod.POST)
@@ -122,7 +122,7 @@ public class ordersController {
 			// 1. od_num별 pd_idx 출력
 			List<ordersVO> pd_idxList = adminService.selectOd_pd_idx(odvo); 
 			
-			RecommandVO rVO = new RecommandVO();
+			recommandVO rVO = new recommandVO();
 			for (int i = 0; i < pd_idxList.size(); i++) {
 				for (int j = i+1; j < pd_idxList.size(); j++) {
 					rVO.setRe_pd_idx(pd_idxList.get(i).getPd_idx());
@@ -305,10 +305,10 @@ public class ordersController {
 	public ModelAndView listpreorder(HttpSession session , ModelAndView mav) throws Exception {
 		
 		String mb_id = (String)session.getAttribute("mb_id");
-		MemberVO mvo = new MemberVO();
+		memberVO mvo = new memberVO();
 		mvo.setMb_id(mb_id);
 		
-		MemberVO membervo = ms.MemberInfo(mvo);
+		memberVO membervo = ms.MemberInfo(mvo);
 
 		Map<String, Object> map = new HashMap();
 //		int countpre = preordersservice.countpre(mb_id);

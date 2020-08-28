@@ -19,8 +19,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.team3.admin.service.AdminService;
-import com.team3.admin.vo.RecommandVO;
+import com.team3.admin.service.adminService;
+import com.team3.admin.vo.recommandVO;
 import com.team3.product.controller.productController;
 import com.team3.product.service.productService;
 import com.team3.product.vo.productVO;
@@ -41,7 +41,7 @@ public class HomeController{
 	int etc=0;
 	
 	@Inject
-	private AdminService adminService;
+	private adminService adminService;
 	@Inject
 	private productService productService;
 	
@@ -62,7 +62,7 @@ public class HomeController{
 		if (pd_idx != 0) {
 			
 			// 최근 구매 상품과 관련된 추천 상품 리스트
-			List<RecommandVO> re_pd_idxList = adminService.re_pd_idxList(pd_idx);
+			List<recommandVO> re_pd_idxList = adminService.re_pd_idxList(pd_idx);
 			productVO pVO = null;
 			int re_pd_idx = 0;
 			for (int i = 0; i < re_pd_idxList.size(); i++) {

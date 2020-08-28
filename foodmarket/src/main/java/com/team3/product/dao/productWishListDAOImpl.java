@@ -7,8 +7,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.team3.product.vo.pd_reviewVO;
-import com.team3.product.vo.pd_wishlistVO;
+import com.team3.product.vo.pdReviewVO;
+import com.team3.product.vo.pdWishlistVO;
 import com.team3.product.vo.productVO;
 
 
@@ -21,12 +21,12 @@ public class productWishListDAOImpl implements productWishListDAO {
 	private SqlSession sqlSession;
 	
 	@Override
-	public int wishListSelect(pd_wishlistVO pd_wishlistVO) throws Exception {
+	public int wishListSelect(pdWishlistVO pd_wishlistVO) throws Exception {
 		return sqlSession.selectOne("wishListSelect",pd_wishlistVO);
 	}
 	
 	@Override
-	public void wishListWrite(pd_wishlistVO pd_wishlistVO) throws Exception {
+	public void wishListWrite(pdWishlistVO pd_wishlistVO) throws Exception {
 		sqlSession.insert(namespace + ".wishListWrite", pd_wishlistVO);
 	}
 
@@ -36,7 +36,7 @@ public class productWishListDAOImpl implements productWishListDAO {
 	}
 
 	@Override
-	public void wishListDelete(pd_wishlistVO pd_wishlistVO) throws Exception {
+	public void wishListDelete(pdWishlistVO pd_wishlistVO) throws Exception {
 		sqlSession.delete(namespace + ".wishListDelete", pd_wishlistVO);
 	}
 	

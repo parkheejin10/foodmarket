@@ -26,10 +26,10 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team3.product.service.productReviewService;
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.PagingMaker;
-import com.team3.product.vo.pd_reviewVO;
-import com.team3.product.vo.pd_wishlistVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pagingMaker;
+import com.team3.product.vo.pdReviewVO;
+import com.team3.product.vo.pdWishlistVO;
 import com.team3.product.vo.productVO;
 
 
@@ -46,7 +46,7 @@ public class productReviewController {
 	//page 처리하기 
 	//@ResponseBody *****
 		@RequestMapping(value = "/productReviewList2/{pd_idx}/{page}", method = RequestMethod.GET)
-		public @ResponseBody  ResponseEntity<Map<String, Object>> reListPage( pd_reviewVO pd_reviewVO, PageCriteria pCri,
+		public @ResponseBody  ResponseEntity<Map<String, Object>> reListPage( pdReviewVO pd_reviewVO, pageCriteria pCri,
 				@PathVariable("page") Integer page, @PathVariable("pd_idx") Integer pd_idx) {
 			logger.info("productReviewList2/{"+pd_idx+"}/"+page+"}");
 			ResponseEntity<Map<String, Object>> resEntity = null;
@@ -60,14 +60,14 @@ public class productReviewController {
 				map.put("numPerPage", pCri.getNumPerPage());
 				//파라미터값 2개 페이지값, member값
 				
-				List<pd_reviewVO> list = productReviewService.reviewListCriteria(map);
+				List<pdReviewVO> list = productReviewService.reviewListCriteria(map);
 				
 				if(page == null || page == 0) {
 					page = 1;
 				}
 				
 				pCri.setPage(page);
-				PagingMaker pagingMaker = new PagingMaker();
+				pagingMaker pagingMaker = new pagingMaker();
 				pagingMaker.setCri(pCri);
 				
 				pd_reviewVO.setProduct_pd_idx(pd_idx); //파라미터값으로 받아오기 //임의로 지정하였다.
@@ -105,7 +105,7 @@ public class productReviewController {
 	}
 	
 	@RequestMapping(value="/productReviewWrite", method=RequestMethod.POST)
-	public String productReviewWritePOST(pd_reviewVO pd_reviewvo, RedirectAttributes reAttr, MultipartHttpServletRequest mRequest) throws Exception{
+	public String productReviewWritePOST(pdReviewVO pd_reviewvo, RedirectAttributes reAttr, MultipartHttpServletRequest mRequest) throws Exception{
 		
 		// @RequestParam("pd_category") String pd_category 
 		logger.info("productReviewWritePOST()");
@@ -180,7 +180,7 @@ public class productReviewController {
 	//구매자 마이페이지에서 불러오기 
 	//기존 게시판 목록과 같은 형식
 	@RequestMapping(value="/productReviewListMember", method=RequestMethod.GET)
-	public void productWishListMember(productVO productVO , pd_reviewVO pd_reviewVO, PageCriteria pCri, Model model, HttpSession session) throws Exception{
+	public void productWishListMember(productVO productVO , pdReviewVO pd_reviewVO, pageCriteria pCri, Model model, HttpSession session) throws Exception{
 		//세션값 가져오기
 		String mb_id = session.getAttribute("mb_id").toString();
 		pd_reviewVO.setMember_mb_id(mb_id);	
@@ -194,11 +194,11 @@ public class productReviewController {
 		map.put("numPerPage", pCri.getNumPerPage());
 		
 		//join
-		List<pd_reviewVO> ReviewListMember = productReviewService.reviewListMemberCriteria(map);
+		List<pdReviewVO> ReviewListMember = productReviewService.reviewListMemberCriteria(map);
 		
 		model.addAttribute("ReviewListMember",ReviewListMember);
 		
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(pCri);		
 		pagingMaker.setTotalData(productReviewService.reviewListMemberCountData(pd_reviewVO));
 		model.addAttribute("pagingMaker", pagingMaker);
@@ -219,7 +219,7 @@ public class productReviewController {
 	
 	//기존 게시판 목록과 같은 형식
 	@RequestMapping(value="/productReviewList", method=RequestMethod.GET)
-	public void productReviewList( pd_reviewVO pd_reviewVO, PageCriteria pCri, Model model) throws Exception{
+	public void productReviewList( pdReviewVO pd_reviewVO, pageCriteria pCri, Model model) throws Exception{
 		//@RequestParam("pd_idx") int pd_idx,
 		
 		logger.info("productReviewList");
@@ -231,7 +231,7 @@ public class productReviewController {
 		//파라미터값 2개 페이지값, member값
 		model.addAttribute("reviewList", productReviewService.reviewListCriteria(map));
 		
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(pCri);
 		
 		pd_reviewVO.setProduct_pd_idx(22); //파라미터값으로 받아오기 //임의로 지정하였다.

@@ -10,23 +10,23 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
 
-import com.team3.cs.dao.CsDAO;
-import com.team3.cs.dto.AskVO;
-import com.team3.cs.dto.CsFileVO;
-import com.team3.cs.dto.CsVO;
-import com.team3.cs.util.FileUtils;
+import com.team3.cs.dao.csDAO;
+import com.team3.cs.dto.askVO;
+import com.team3.cs.dto.csFileVO;
+import com.team3.cs.dto.csVO;
+import com.team3.cs.util.fileUtils;
 
 @Service
 public class csServiceImpl implements csService {
 	
 	@Resource(name="fileUtils")
-	private FileUtils fileUtils;
+	private fileUtils fileUtils;
 	
 	@Inject
-	private CsDAO dao;
+	private csDAO dao;
 	
 	@Override
-	public List<AskVO> selectAsk(Map<String, Object> map) throws Exception {
+	public List<askVO> selectAsk(Map<String, Object> map) throws Exception {
 		return dao.selectAsk(map);
 	}
 	
@@ -36,7 +36,7 @@ public class csServiceImpl implements csService {
 	}
 
 	@Override
-	public List<AskVO> searchAsk(Map<String, Object> map) throws Exception {
+	public List<askVO> searchAsk(Map<String, Object> map) throws Exception {
 		return dao.searchAsk(map);
 	}
 
@@ -46,7 +46,7 @@ public class csServiceImpl implements csService {
 	}
 	
 	@Override
-	public List<AskVO> findAsk(Map<String, Object> map) throws Exception {
+	public List<askVO> findAsk(Map<String, Object> map) throws Exception {
 		return dao.findAsk(map);
 	}
 
@@ -57,10 +57,10 @@ public class csServiceImpl implements csService {
 	
 
 	@Override
-	public void writeCS(HttpServletRequest request, CsVO csVO, CsFileVO csFileVO) throws Exception {
+	public void writeCS(HttpServletRequest request, csVO csVO, csFileVO csFileVO) throws Exception {
 		dao.writeCS(csVO);	
 		
-		List<CsFileVO> list = fileUtils.parseInsertFileInfo(csFileVO, request);
+		List<csFileVO> list = fileUtils.parseInsertFileInfo(csFileVO, request);
 		for(int i=0, size=list.size(); i<size; i++){
 			dao.insertFile(list.get(i));
 		}
@@ -72,7 +72,7 @@ public class csServiceImpl implements csService {
 	}
 
 	@Override
-	public List<CsVO> selectCS(Map<String, Object> map) throws Exception {
+	public List<csVO> selectCS(Map<String, Object> map) throws Exception {
 		return dao.selectCS(map);
 	}
 	
@@ -92,7 +92,7 @@ public class csServiceImpl implements csService {
 	}
 
 	@Override
-	public void updateCS(CsVO csVO) throws Exception {
+	public void updateCS(csVO csVO) throws Exception {
 		dao.updateCS(csVO);		
 	}
 
@@ -102,7 +102,7 @@ public class csServiceImpl implements csService {
 	}
 
 	@Override
-	public void replyCS(CsVO csVO) throws Exception {
+	public void replyCS(csVO csVO) throws Exception {
 		dao.replyCS(csVO);
 	}
 	
@@ -110,7 +110,7 @@ public class csServiceImpl implements csService {
 	
 	// cs전체 리스트
 	@Override
-	public List<CsVO> csList(Map<String, Object> map) {
+	public List<csVO> csList(Map<String, Object> map) {
 		return dao.csList(map);
 	}
 	// 전체 목록 수
@@ -120,7 +120,7 @@ public class csServiceImpl implements csService {
 	}
 	// cs 타입별 리스트
 	@Override
-	public List<CsVO> cs_typeList(Map<String, Object> map) {
+	public List<csVO> cs_typeList(Map<String, Object> map) {
 		return dao.cs_typeList(map);
 	}
 	// cs 타입별 목록 수

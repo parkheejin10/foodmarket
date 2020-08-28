@@ -97,7 +97,7 @@
 <!-- =============== 회원/상품 전체 리스트 sql  =============== -->
 	
 	<!-- 전체 회원목록 -->
-	<select id="selectMember" parameterType="hashmap" resultType="com.team3.member.vo.MemberVO">
+	<select id="selectMember" parameterType="hashmap" resultType="com.team3.member.vo.memberVO">
         SELECT 
        		MB_IDX, MB_ID, MB_PW, MB_NAME, MB_EMAIL, MB_MOBILE, MB_POSTCODE, MB_ADDRESS, MB_ADDRESS1, MB_BIRTH, MB_SELLER, MB_DATE, MB_RDATE 
         FROM member
@@ -110,7 +110,7 @@
 		FROM member
 	</select>
     <!-- 판매자/구매자별 회원 목록 -->
-	<select id="sellerList" parameterType="hashmap" resultType="com.team3.member.vo.MemberVO">
+	<select id="sellerList" parameterType="hashmap" resultType="com.team3.member.vo.memberVO">
         SELECT 
         	MB_IDX, MB_ID, MB_PW, MB_NAME, MB_EMAIL, MB_MOBILE, MB_POSTCODE, MB_ADDRESS, MB_ADDRESS1, MB_BIRTH, MB_SELLER, MB_DATE, MB_RDATE 
         FROM member 
@@ -279,7 +279,7 @@
 		where o.od_date like CONCAT('%',#{od_date},'%') and o.od_idx=#{od_idx} and o.pd_idx=p.pd_idx and o.od_num=op.od_num
 	</select>
 	<!-- 1달 방문자 추이 -->
-	<select id="monthVisit" resultType="com.team3.admin.vo.AdminVO">
+	<select id="monthVisit" resultType="com.team3.admin.vo.adminVO">
 		SELECT
 			*
 		FROM visit
@@ -324,7 +324,7 @@
 		order by pd_idx;
 	</select>
 	<!-- 최근 구매 상품과 관련된 추천 상품 리스트 -->
-	<select id="re_pd_idxList" resultType="com.team3.admin.vo.RecommandVO">
+	<select id="re_pd_idxList" resultType="com.team3.admin.vo.recommandVO">
 		select re_pd_idx,re_pd_idx2,re_score
 		from recommand
 		where re_pd_idx = #{pd_idx} or re_pd_idx2 = #{pd_idx}

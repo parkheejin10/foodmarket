@@ -7,9 +7,9 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.team3.member.vo.MemberVO;
+import com.team3.member.vo.memberVO;
 import com.team3.product.dao.productDAO;
-import com.team3.product.vo.FindCriteria;
+import com.team3.product.vo.findCriteria;
 import com.team3.product.vo.productVO;
 
 
@@ -62,7 +62,7 @@ public class productServiceImpl implements productService {
 	}
 	//판매자 페이지
 	@Override
-	public int sellerListCountData(MemberVO mvo) throws Exception{
+	public int sellerListCountData(memberVO mvo) throws Exception{
 		return productDAO.sellerListCountData(mvo);
 	} 
 	
@@ -73,12 +73,12 @@ public class productServiceImpl implements productService {
 	}
 	
 	@Override
-	public List<productVO> listFind(FindCriteria findCri) throws Exception{
+	public List<productVO> listFind(findCriteria findCri) throws Exception{
 		return productDAO.listFind(findCri);
 	}
 	
 	@Override
-	public int findCountData(FindCriteria findCri) throws Exception{
+	public int findCountData(findCriteria findCri) throws Exception{
 		return productDAO.findCountData(findCri);
 	}
 

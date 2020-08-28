@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-import com.team3.member.vo.MemberVO;
-import com.team3.product.vo.FindCriteria;
+import com.team3.member.vo.memberVO;
+import com.team3.product.vo.findCriteria;
 import com.team3.product.vo.productVO;
 
 
@@ -55,7 +55,7 @@ public class productDAOImpl implements productDAO {
 	}
 	//판매자 페이지 
 	@Override
-	public int sellerListCountData(MemberVO mvo) throws Exception {
+	public int sellerListCountData(memberVO mvo) throws Exception {
 		return sqlSession.selectOne(namespace+".sellerListCountData", mvo);
 	}
 	//상품 전체 갯수 세기
@@ -65,12 +65,12 @@ public class productDAOImpl implements productDAO {
 	}
 	// 
 	@Override
-	public List<productVO> listFind(FindCriteria findCri) throws Exception{
+	public List<productVO> listFind(findCriteria findCri) throws Exception{
 		return sqlSession.selectList("listFind", findCri);
 	}
 	// 
 	@Override
-	public int findCountData(FindCriteria findCri) throws Exception{
+	public int findCountData(findCriteria findCri) throws Exception{
 		return sqlSession.selectOne("findCountData", findCri);
 	}
 }

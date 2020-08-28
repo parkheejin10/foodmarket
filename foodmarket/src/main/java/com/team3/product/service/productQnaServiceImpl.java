@@ -8,8 +8,8 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.team3.product.dao.productQnaDAO;
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pdReviewVO;
 import com.team3.product.vo.productQnaVO;
 
 
@@ -85,7 +85,7 @@ public class productQnaServiceImpl implements productQnaService {
 
 
 	@Override
-	public int countData(PageCriteria pCria) throws Exception {
+	public int countData(pageCriteria pCria) throws Exception {
 		
 		return productqnadao.countData(pCria);
 	}

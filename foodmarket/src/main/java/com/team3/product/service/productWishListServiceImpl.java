@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 
 import com.team3.product.dao.productReviewDAO;
 import com.team3.product.dao.productWishListDAO;
-import com.team3.product.vo.pd_reviewVO;
-import com.team3.product.vo.pd_wishlistVO;
+import com.team3.product.vo.pdReviewVO;
+import com.team3.product.vo.pdWishlistVO;
 import com.team3.product.vo.productVO;
 
 
@@ -20,12 +20,12 @@ public class productWishListServiceImpl implements productWishListService {
 	private productWishListDAO productWishListDAO;
 	
 	@Override
-	public int wishListSelect(pd_wishlistVO pd_wishlistVO) throws Exception{
+	public int wishListSelect(pdWishlistVO pd_wishlistVO) throws Exception{
 		return productWishListDAO.wishListSelect(pd_wishlistVO);
 	} 
 	
 	@Override
-	public void wishListWrite(pd_wishlistVO pd_wishlistVO) throws Exception{
+	public void wishListWrite(pdWishlistVO pd_wishlistVO) throws Exception{
 		productWishListDAO.wishListWrite(pd_wishlistVO);
 	}
 	
@@ -37,7 +37,7 @@ public class productWishListServiceImpl implements productWishListService {
 	
 	//삭제
 	@Override
-	public void wishListDelete(pd_wishlistVO pd_wishlistVO) throws Exception{
+	public void wishListDelete(pdWishlistVO pd_wishlistVO) throws Exception{
 		productWishListDAO.wishListDelete(pd_wishlistVO);
 	}
 	

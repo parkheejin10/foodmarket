@@ -22,15 +22,15 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.team3.member.service.MemberService;
-import com.team3.member.vo.MemberVO;
+import com.team3.member.service.memberService;
+import com.team3.member.vo.memberVO;
 import com.team3.product.service.productQnaService;
 import com.team3.product.service.productReviewService;
 import com.team3.product.service.productService;
-import com.team3.product.vo.FindCriteria;
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.PagingMaker;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.findCriteria;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pagingMaker;
+import com.team3.product.vo.pdReviewVO;
 import com.team3.product.vo.productQnaVO;
 import com.team3.product.vo.productVO;
 
@@ -43,7 +43,7 @@ public class productController {
 	private productService productService;
 	
 	@Inject
-	private MemberService memberservice;
+	private memberService memberservice;
 	
 	@Inject
 	private productReviewService productReviewService;
@@ -53,7 +53,7 @@ public class productController {
 	
 	
 	@RequestMapping(value="/productSellerList", method=RequestMethod.GET)
-	public void productSellerList(MemberVO mvo, PageCriteria pCri, Model model, HttpSession session) throws Exception{
+	public void productSellerList(memberVO mvo, pageCriteria pCri, Model model, HttpSession session) throws Exception{
 		logger.info("productSellerList");
 		
 		//세션값 가져오기
@@ -71,7 +71,7 @@ public class productController {
 		//파라미터값 2개 페이지값, member값
 		model.addAttribute("list", productService.sellerListCriteria(map));
 		
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(pCri);
 		
 		
@@ -86,7 +86,7 @@ public class productController {
 	
 	//상품 목록 페이지
 	@RequestMapping(value="/productList", method=RequestMethod.GET)
-	public void list(@ModelAttribute("fCri") FindCriteria fCri, Model model) throws Exception{
+	public void list(@ModelAttribute("fCri") findCriteria fCri, Model model) throws Exception{
 		logger.info("productList");
 		
 //		model.addAttribute("list", productService.listCriteria(fCri));//기존 list
@@ -94,7 +94,7 @@ public class productController {
 //		System.out.println(productService.listFind(fCri));
 		//join해서 list불러오기 
 		
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(fCri);
 		
 //		pagingMaker.setTotalData(productService.listCountData(fCri));//기존 list
@@ -106,12 +106,12 @@ public class productController {
 	
 	//상품 상세 페이지
 		@RequestMapping(value="/productDetail", method = RequestMethod.GET)
-		public void productDetail(@RequestParam("pd_idx") int pd_idx, @ModelAttribute("fCri") FindCriteria fCri, pd_reviewVO pd_reviewVO, PageCriteria pCri, Model model,HttpSession session,@ModelAttribute productQnaVO qvo)
+		public void productDetail(@RequestParam("pd_idx") int pd_idx, @ModelAttribute("fCri") findCriteria fCri, pdReviewVO pd_reviewVO, pageCriteria pCri, Model model,HttpSession session,@ModelAttribute productQnaVO qvo)
 			throws Exception{
 //			productService.hitUp(pd_idx); //조회수 증가
 			logger.info("productDetail  "+pd_idx+"번 상품");
 			//url만들기***********
-			PagingMaker pagingMaker = new PagingMaker();
+			pagingMaker pagingMaker = new pagingMaker();
 			pagingMaker.setCri(fCri);
 			model.addAttribute("pagingMaker", pagingMaker);	
 			//product 정보 가져오기 
@@ -131,7 +131,7 @@ public class productController {
 		
 			
 			//상품문의
-			PagingMaker pagingMaker3 = new PagingMaker();
+			pagingMaker pagingMaker3 = new pagingMaker();
 			pagingMaker.setCri(fCri);
 			model.addAttribute("pagingMaker", pagingMaker3);	
 		
@@ -152,7 +152,7 @@ public class productController {
 			map.put("pd_idx", pd_idx);
 
 			model.addAttribute("qnalist", productqnaservice.list(map)); 
-			PagingMaker pagingmaker = new PagingMaker();
+			pagingMaker pagingmaker = new pagingMaker();
 			pagingmaker.setCri(pCri);
 			
 			pagingmaker.setTotalData(productqnaservice.countData(pCri));
@@ -167,7 +167,7 @@ public class productController {
 	
 	//상품 삭제하기
 	@RequestMapping(value="/productSellerDelete", method = RequestMethod.GET)
-	public String delPage(@RequestParam("pd_idx") int pd_idx, PageCriteria pCri,
+	public String delPage(@RequestParam("pd_idx") int pd_idx, pageCriteria pCri,
 			RedirectAttributes reAttr) throws Exception{
 		logger.info("productSellerDelete  "+pd_idx+"번 상품");
 		productService.remove(pd_idx);
@@ -186,11 +186,11 @@ public class productController {
 	//상품 수정하기
 	//판매자가 수정할 수 있다. 
 	@RequestMapping(value="/productSellerModify", method=RequestMethod.GET)
-	public void modifyGET(@RequestParam("pd_idx") int pd_idx,PageCriteria pCri, Model model) 
+	public void modifyGET(@RequestParam("pd_idx") int pd_idx,pageCriteria pCri, Model model) 
 			throws Exception{
 		logger.info("productSellerModify"+pd_idx+"번 상품");
 		//url만들기***********
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(pCri);
 		model.addAttribute("pagingMaker", pagingMaker);		
 		
@@ -200,7 +200,7 @@ public class productController {
 	
 	//판매자가 수정할 수 있다. 
 	@RequestMapping(value="/productSellerModify", method=RequestMethod.POST)
-	public String modifyPOST(productVO productVO, PageCriteria pCri, RedirectAttributes reAttr) throws Exception{
+	public String modifyPOST(productVO productVO, pageCriteria pCri, RedirectAttributes reAttr) throws Exception{
 		logger.info("productSellerModify  POST");
 //		logger.info(pCri.toString());
 		

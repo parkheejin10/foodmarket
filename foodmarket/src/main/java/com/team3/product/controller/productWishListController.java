@@ -30,10 +30,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.team3.product.service.productReviewService;
 import com.team3.product.service.productWishListService;
-import com.team3.product.vo.PageCriteria;
-import com.team3.product.vo.PagingMaker;
-import com.team3.product.vo.pd_reviewVO;
-import com.team3.product.vo.pd_wishlistVO;
+import com.team3.product.vo.pageCriteria;
+import com.team3.product.vo.pagingMaker;
+import com.team3.product.vo.pdReviewVO;
+import com.team3.product.vo.pdWishlistVO;
 import com.team3.product.vo.productVO;
 
 
@@ -54,7 +54,7 @@ public class productWishListController {
 	
 		//RequestMethod.GET
 		@RequestMapping(value = "/wishListSelect", method = RequestMethod.POST)
-		public @ResponseBody ResponseEntity<Map<String, Object>> wishListSelect(@RequestBody pd_wishlistVO pd_wishlistVO) {
+		public @ResponseBody ResponseEntity<Map<String, Object>> wishListSelect(@RequestBody pdWishlistVO pd_wishlistVO) {
 
 			ResponseEntity<Map<String, Object>> resEntity = null;
 			try {          
@@ -86,7 +86,7 @@ public class productWishListController {
 	
 	//등록 버튼
 	@RequestMapping(value = "/wishListWrite", method = RequestMethod.POST)
-	public @ResponseBody ResponseEntity<Integer> wishListWrite(@RequestBody pd_wishlistVO pd_wishlistVO) {
+	public @ResponseBody ResponseEntity<Integer> wishListWrite(@RequestBody pdWishlistVO pd_wishlistVO) {
 		
 		ResponseEntity<Integer> resEntity = null;
 //		System.out.println("세션값!!!   "+pd_wishlistVO.getMember_mb_id());
@@ -110,7 +110,7 @@ public class productWishListController {
 	//삭제 버튼 눌렀을 때 
 	//RequestMethod.DELETE
 	@RequestMapping(value = "/wishListDelete", method = RequestMethod.DELETE)
-	public  @ResponseBody ResponseEntity<Integer> wishListDelete(@RequestBody pd_wishlistVO pd_wishlistVO) {
+	public  @ResponseBody ResponseEntity<Integer> wishListDelete(@RequestBody pdWishlistVO pd_wishlistVO) {
 
 		ResponseEntity<Integer> resEntity = null;
 
@@ -140,7 +140,7 @@ public class productWishListController {
 	//구매자 마이페이지에서 불러오기 
 	//기존 게시판 목록과 같은 형식
 	@RequestMapping(value="/productWishListMember", method=RequestMethod.GET)
-	public void productWishListMember(productVO productVO ,pd_wishlistVO pd_wishlistVO, PageCriteria pCri, Model model, HttpSession session) throws Exception{
+	public void productWishListMember(productVO productVO ,pdWishlistVO pd_wishlistVO, pageCriteria pCri, Model model, HttpSession session) throws Exception{
 		//세션값 가져오기
 		String mb_id = session.getAttribute("mb_id").toString();
 				
@@ -158,7 +158,7 @@ public class productWishListController {
 		
 		model.addAttribute("WishListMember",WishListMember);
 		
-		PagingMaker pagingMaker = new PagingMaker();
+		pagingMaker pagingMaker = new pagingMaker();
 		pagingMaker.setCri(pCri);		
 		pagingMaker.setTotalData(productWishListService.wishListMemberCountData(mb_id));
 		model.addAttribute("pagingMaker", pagingMaker);

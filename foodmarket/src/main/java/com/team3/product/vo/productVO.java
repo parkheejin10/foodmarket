@@ -2,7 +2,7 @@ package com.team3.product.vo;
 
 import java.util.Date;
 
-import com.team3.member.vo.MemberVO;
+import com.team3.member.vo.memberVO;
 
 public class productVO {
 
@@ -33,20 +33,20 @@ public class productVO {
 	private String member_mb_id; // member 외래키
 
 	//pd_wishlistVO 객체
-	private pd_wishlistVO pd_wishlistVO;
-	public pd_wishlistVO getPd_wishlistVO() {
+	private pdWishlistVO pd_wishlistVO;
+	public pdWishlistVO getPd_wishlistVO() {
 		return pd_wishlistVO;
 	}
-	public void setPd_wishlistVO(pd_wishlistVO pd_wishlistVO) {
+	public void setPd_wishlistVO(pdWishlistVO pd_wishlistVO) {
 		this.pd_wishlistVO = pd_wishlistVO;
 	}
 
 	//member VO객체
-	private MemberVO mvo;
-	public MemberVO getMemdto() {
+	private memberVO mvo;
+	public memberVO getMemdto() {
 		return mvo;
 	}
-	public void setMemdto(MemberVO mvo) {
+	public void setMemdto(memberVO mvo) {
 		this.mvo = mvo;
 	}
 
@@ -54,7 +54,7 @@ public class productVO {
 	
 	public productVO(String pd_category, int pd_idx, String pd_name, int pd_price, String pd_size, String pd_origin,
 			String pd_img_name_f, String pd_img_name_s, int pd_stock, Date pd_date, String member_mb_id,
-			com.team3.product.vo.pd_wishlistVO pd_wishlistVO, MemberVO mvo) {
+			com.team3.product.vo.pdWishlistVO pd_wishlistVO, memberVO mvo) {
 		super();
 		this.pd_category = pd_category;
 		this.pd_idx = pd_idx;

@@ -6,13 +6,13 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
-import com.team3.cs.dao.CsFileDAO;
+import com.team3.cs.dao.csFileDAO;
 
 @Service
 public class csFileServiceImpl implements csFileService {
 	
 	@Inject
-	private CsFileDAO dao;
+	private csFileDAO dao;
 
 	@Override
 	public Map<String, Object> selectFileInfo(int idx) throws Exception {

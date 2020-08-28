@@ -7,7 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.team3.product.dao.productReviewDAO;
-import com.team3.product.vo.pd_reviewVO;
+import com.team3.product.vo.pdReviewVO;
 
 
 @Service
@@ -17,7 +17,7 @@ public class productReviewServiceImpl implements productReviewService {
 	private productReviewDAO productReviewDAO;
 	
 	@Override
-	public void reviewWrite(pd_reviewVO pd_reviewVO) throws Exception{
+	public void reviewWrite(pdReviewVO pd_reviewVO) throws Exception{
 		productReviewDAO.reviewWrite(pd_reviewVO);
 	}
 	
@@ -27,12 +27,12 @@ public class productReviewServiceImpl implements productReviewService {
 	}
 
 	@Override
-	public List<pd_reviewVO> reviewListCriteria(Map map) throws Exception{
+	public List<pdReviewVO> reviewListCriteria(Map map) throws Exception{
 		return productReviewDAO.reviewListCriteria(map);
 	}
 
 	@Override
-	public int reviewListCountData(pd_reviewVO pd_reviewVO) throws Exception{
+	public int reviewListCountData(pdReviewVO pd_reviewVO) throws Exception{
 		return productReviewDAO.reviewListCountData(pd_reviewVO);
 	} 
 	
@@ -45,12 +45,12 @@ public class productReviewServiceImpl implements productReviewService {
 	
 	
 	@Override
-	public List<pd_reviewVO> reviewListMemberCriteria(Map map) throws Exception{
+	public List<pdReviewVO> reviewListMemberCriteria(Map map) throws Exception{
 		return productReviewDAO.reviewListMemberCriteria(map);
 	}
 
 	@Override
-	public int reviewListMemberCountData(pd_reviewVO pd_reviewVO) throws Exception{
+	public int reviewListMemberCountData(pdReviewVO pd_reviewVO) throws Exception{
 		return productReviewDAO.reviewListMemberCountData(pd_reviewVO);
 	} 
 	

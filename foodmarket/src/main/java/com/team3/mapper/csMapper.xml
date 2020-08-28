@@ -7,7 +7,7 @@
  	
  	<!-- 자주 묻는 질문 -->
  	<!-- 글 목록 가져오기 -->
- 	<select id="selectAsk" resultType="com.team3.cs.dto.AskVO">
+ 	<select id="selectAsk" resultType="com.team3.cs.dto.askVO">
  		select 
  			ask_type, ask_subject, ask_content 
  		from ask 
@@ -22,7 +22,7 @@
  	</select>
  	
  	<!-- 검색 키워드로 조회 -->
- 	<select id="searchAsk" resultType="com.team3.cs.dto.AskVO">
+ 	<select id="searchAsk" resultType="com.team3.cs.dto.askVO">
  		select 
  			ask_type, ask_subject, ask_content 
  		from ask where ask_subject like concat('%',#{keyword},'%') 
@@ -30,7 +30,7 @@
  	</select>
  	
  	<!-- 카테고리별로 조회 -->
- 	<select id="findAsk" resultType="com.team3.cs.dto.AskVO">
+ 	<select id="findAsk" resultType="com.team3.cs.dto.askVO">
  		select 
  			ask_type, ask_subject, ask_content
  		from ask where ask_type=#{type}
@@ -55,12 +55,12 @@
  	
  	<!-- CS 게시판 -->
  	<!-- 글쓰기 -->
- 	<insert id="insertCS" parameterType="com.team3.cs.dto.CsVO">
+ 	<insert id="insertCS" parameterType="com.team3.cs.dto.csVO">
  		insert into cs_board(cs_type, cs_subject, cs_content, cs_file, cs_date, cs_re_ref, cs_re_lev, cs_re_seq, order_od_idx, member_mb_id, pd_idx, od_num) values(#{cs_type}, #{cs_subject}, #{cs_content}, #{cs_file} ,SYSDATE(), #{cs_re_ref}, 0, 0, 1, #{member_mb_id}, #{pd_idx}, #{od_num})
  	</insert>
  	
  	<!-- CS 게시판 파일 업로드 정보 DB 저장 -->
- 	<insert id="insertCsFile" parameterType="com.team3.cs.dto.CsFileVO" >
+ 	<insert id="insertCsFile" parameterType="com.team3.cs.dto.csFileVO" >
  		insert into cs_file(board_idx, org_filename, str_filename, file_size, file_date, crea_id) values(#{board_idx}, #{org_filename}, #{str_filename}, #{file_size}, SYSDATE(), 'admin')
  	</insert>
  	
@@ -80,7 +80,7 @@
  	</select>
  	
  	<!-- 목록 보기 -->
- 	<select id="selectCS" parameterType="hashmap" resultType="com.team3.cs.dto.CsVO">
+ 	<select id="selectCS" parameterType="hashmap" resultType="com.team3.cs.dto.csVO">
  		select cs_idx, cs_type, cs_subject, member_mb_id, cs_date from cs_board where member_mb_id=#{member_mb_id} order by cs_re_ref desc, cs_re_seq asc limit #{pageStart}, #{perPageNum}
  	</select>
  	
@@ -91,22 +91,22 @@
  	
  	
  	<!-- 게시물 보기 -->
- 	<select id="readCS" resultType="com.team3.cs.dto.CsVO">
+ 	<select id="readCS" resultType="com.team3.cs.dto.csVO">
  		select * from cs_board where cs_idx = #{cs_idx}
  	</select>
  	
  	<!-- 게시물 수정 -->
- 	<update id="updateCS" parameterType="com.team3.cs.dto.CsVO">
+ 	<update id="updateCS" parameterType="com.team3.cs.dto.csVO">
  		update cs_board set cs_type=#{cs_type}, cs_subject=#{cs_subject}, cs_content=#{cs_content} where cs_idx=#{cs_idx}
  	</update>
     
     <!-- 게시물 삭제 -->
-    <delete id="deleteCS" parameterType="com.team3.cs.dto.CsVO">
+    <delete id="deleteCS" parameterType="com.team3.cs.dto.csVO">
     	delete from cs_board where cs_idx=#{cs_idx}
     </delete>
     
     <!-- 답글 쓰기 -->
-    <insert id="replyCS" parameterType="com.team3.cs.dto.CsVO">
+    <insert id="replyCS" parameterType="com.team3.cs.dto.csVO">
  		insert into cs_board(cs_type, cs_subject, cs_content, cs_date, cs_re_ref, cs_re_lev, cs_re_seq, order_od_idx, member_mb_id) values(#{cs_type}, #{cs_subject}, #{cs_content}, SYSDATE(), #{cs_re_ref}, 1, 1, 1, #{member_mb_id})
  	</insert>
  	
@@ -114,7 +114,7 @@
  	<!-- ============================ admin 사용  ============================ -->
  	
  	<!-- 전체 목록 보기 -->
- 	<select id="csList" parameterType="hashmap" resultType="com.team3.cs.dto.CsVO">
+ 	<select id="csList" parameterType="hashmap" resultType="com.team3.cs.dto.csVO">
  		select *
  		from cs_board
  		order by cs_re_ref desc, cs_re_seq asc limit #{pageStart}, #{perPageNum}
@@ -125,7 +125,7 @@
  		from cs_board
  	</select>
  	<!-- 문의 타입별 리스트 -->
- 	<select id="cs_typeList" parameterType="hashmap" resultType="com.team3.cs.dto.CsVO">
+ 	<select id="cs_typeList" parameterType="hashmap" resultType="com.team3.cs.dto.csVO">
  		select *
  		from cs_board
  		where cs_type = #{cs_type}

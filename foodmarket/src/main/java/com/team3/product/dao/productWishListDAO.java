@@ -3,19 +3,19 @@ package com.team3.product.dao;
 import java.util.List;
 import java.util.Map;
 
-import com.team3.product.vo.pd_reviewVO;
-import com.team3.product.vo.pd_wishlistVO;
+import com.team3.product.vo.pdReviewVO;
+import com.team3.product.vo.pdWishlistVO;
 import com.team3.product.vo.productVO;
 
 public interface productWishListDAO {
 	
-	public int wishListSelect(pd_wishlistVO pd_wishlistVO) throws Exception;
+	public int wishListSelect(pdWishlistVO pd_wishlistVO) throws Exception;
 
-	public void wishListWrite(pd_wishlistVO pd_wishlistVO) throws Exception;
+	public void wishListWrite(pdWishlistVO pd_wishlistVO) throws Exception;
 	
 	public int wishListCountData() throws Exception;
 	
-	public void wishListDelete(pd_wishlistVO pd_wishlistVO) throws Exception;
+	public void wishListDelete(pdWishlistVO pd_wishlistVO) throws Exception;
 	
 	public int wishListProductCountData(int product_pd_idx) throws Exception;
 	
